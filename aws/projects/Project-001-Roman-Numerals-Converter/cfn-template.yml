@@ -35,7 +35,7 @@ Resources:
       InstanceType: t2.micro
       KeyName: !Ref KeyName
       SecurityGroupIds:
-        - !Ref WebServersecurityGroup
+        - !Ref WebServerSecurityGroup
       Tags:
         - Key: Name
           Value: !Sub Web Server of ${AWS::StackName}
@@ -44,10 +44,10 @@ Resources:
           yum update -y
           yum install python3 -y
           pip3 install flask
-          cd /home/ec2-user
-          wget -P templates https://raw.githubusercontent.com/armando-cla/myproject/main/aws/projects/Project-001-Roman-Numerals-Convertor/templates/index.html
-          wget -P templates https://raw.githubusercontent.com/armando-cla/myproject/main/aws/projects/Project-001-Roman-Numerals-Convertor/templates/result.html
-          wget https://raw.githubusercontent.com/armando-cla/myproject/main/aws/projects/Project-001-Roman-Numerals-Convertor/app.py
+          cd /home/ec2-user 
+          wget -P templates https://raw.githubusercontent.com/armando-cla/myproject/main/aws/projects/Project-001-Roman-Numerals-Converter/templates/index.html
+          wget -P templates https://raw.githubusercontent.com/armando-cla/myproject/main/aws/projects/Project-001-Roman-Numerals-Converter/templates/result.html
+          wget https://raw.githubusercontent.com/armando-cla/myproject/main/aws/projects/Project-001-Roman-Numerals-Converter/app.py
           python3 app.py
  
 Outputs:
