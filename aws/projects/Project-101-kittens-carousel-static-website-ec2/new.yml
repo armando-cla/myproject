@@ -1,0 +1,120 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Master stack: PathToMasterStackFile'
+
+Parameters:
+  BranchName:
+    Default: BranchName
+    Description: Choose which Branch do you want to use
+    Type: String
+  Customer:
+    Description: is used as Customer tag value for all resources
+    Type: String
+    Default: Customer
+    AllowedPattern: ^[A-Za-z0-9]*$
+    ConstraintDescription: must contain only alphanumeric characters and numbers.
+    MaxLength: 20
+    MinLength: 1
+  CustomerProject:
+    Description: is used as Customer project tag value for all resources
+    Type: String
+    Default: CustomerProject
+    AllowedPattern: ^[A-Za-z0-9]*$
+    ConstraintDescription: must contain only alphanumeric characters and numbers.
+    MaxLength: 20
+    MinLength: 1
+  Environment:
+    Description: Environment to deploy. Use staging for limited resources and no alerts.
+    Type: String
+    Default: Staging
+    AllowedValues:
+    - Staging
+    - Production
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+    - Label:
+        default: Tagging and billing
+      Parameters:
+      - Customer
+      - CustomerProject
+    - Label:
+        default: Choose Branch and Environment
+      Parameters:
+      - Environment
+      - BranchName
+
+Mappings:
+
+Resources:
+  LogicalID:
+    Type: AWS::EC2::Instance
+    Properties:
+      AdditionalInfo: "String"
+      Affinity: "String"
+      AvailabilityZone: "String"
+      BlockDeviceMappings:
+        BlockDeviceMappings
+      CpuOptions:
+        CoreCount: Number
+        ThreadsPerCore: Number
+      CreditSpecification:
+        CPUCredits: "Number"
+      DisableApiTermination: false
+      EbsOptimized: false
+      ElasticGpuSpecifications:
+        ElasticGpuSpecifications
+      ElasticInferenceAccelerators:
+        ElasticInferenceAccelerators
+      EnclaveOptions:
+        Enabled: false
+      HibernationOptions:
+        Configured: false
+      HostId: "String"
+      HostResourceGroupArn: "String"
+      IamInstanceProfile: "String"
+      ImageId: "String"
+      InstanceInitiatedShutdownBehavior: "String"
+      InstanceType: "String"
+      Ipv6AddressCount: Number
+      Ipv6Addresses:
+        Ipv6Addresses
+      KernelId: "String"
+      KeyName: "String"
+      LaunchTemplate:
+        LaunchTemplateId: "String"
+        LaunchTemplateName: "String"
+        Version: "String"
+      LicenseSpecifications:
+        LicenseSpecifications
+      Monitoring: String
+      NetworkInterfaces:
+        NetworkInterfaces
+      PlacementGroupName: "String"
+      PrivateDnsNameOptions:
+        EnableResourceNameDnsAAAARecord: false
+        EnableResourceNameDnsARecord: false
+        HostnameType: "String"
+      PrivateIpAddress: "false"
+      PropagateTagsToVolumeOnCreation: String
+      RamdiskId: "String"
+      SecurityGroupIds:
+        SecurityGroupIds
+      SecurityGroups:
+        SecurityGroups
+      SourceDestCheck: false
+      SsmAssociations:
+        SsmAssociations
+      SubnetId: "String"
+      Tags:
+        Tags
+      Tenancy: "String"
+      UserData: "String"
+      Volumes:
+        Volumes
+
+Outputs:
+  WebsiteURL:
+    Value: !Sub
+      - http://${PublicAddress}
